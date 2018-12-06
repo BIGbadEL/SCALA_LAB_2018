@@ -2,6 +2,8 @@ package Lab7_gr2
 
 object zad2 {
   def main(args: Array[String]): Unit = {
+
+
     class TDist ( val t: Int ) {
       def tDistance: Int = t
     }

@@ -34,6 +34,7 @@ object zad2 {
     def apply(h: Int,min: Int,sec: Int): STime = new STime(h, min, sec)
     object Type extends Enumeration{
       type Type = Value
+
       val hour, minutes, seconds = Value
     }
   }

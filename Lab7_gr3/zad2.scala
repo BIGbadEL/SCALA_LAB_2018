@@ -10,8 +10,8 @@ object zad2 {
 
 
   trait LimitX{
-    var min: Int =  10
-    var max: Int = -10
+    var min: Int = Int.MinValue
+    var max: Int = Int.MaxValue
   }
 
   trait Moves extends Point{
