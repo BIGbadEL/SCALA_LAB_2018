@@ -18,7 +18,7 @@ object zad2 {
     override def toString: String = "Diword(" + str + "," + str2 + ")"
   }
 
-  def extr(list:  List[Iterable[Serializable] with PartialFunction[Int with String,String]],
+  @tailrec def extr(list:  List[Iterable[Serializable] with PartialFunction[Int with String,String]],
            result: List[Any] = List()): List[Any] ={
     if(list.isEmpty) result else{
       list.head match {
@@ -29,7 +29,7 @@ object zad2 {
         }
         case temp: List[String] => extr(list.tail, new Diword(temp.head, temp.tail.head) :: result)
       }
-      extr(list.tail, result)
+      //extr(list.tail, result)
     }
   }
 
@@ -60,8 +60,7 @@ object zad2 {
       List("Cos", "innego"),
       Map("company" -> "Salina Bochnia", "origin" -> "Poland"),
       Map("company" -> "AGH", "origin" -> "Poland"),
-      Map("name" -> "Krzysztof", "fname" -> "Krol", "age" -> "14"),
-      5
+      Map("name" -> "Krzysztof", "fname" -> "Krol", "age" -> "14")
     )
     val p = extr(data)
     println(p)
