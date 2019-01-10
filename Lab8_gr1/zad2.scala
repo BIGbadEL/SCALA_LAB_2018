@@ -1,9 +1,5 @@
 package Lab8_gr1
 
-import java.io.Serializable
-
-import scala.annotation.tailrec
-
 object zad2 {
   class Person(val name: String, val fname: String, val age: String){
     override def toString: String = "Person(" + name + ", " + fname + ", " + age + ")"
@@ -13,21 +9,27 @@ object zad2 {
     override def toString: String = "Company(" + name + "," + origin + ")"
   }
 
-
-
-
-  def extr(list: List[Iterable[Serializable] with PartialFunction[Int with String,String]]): List[Any] ={
-//    val temp: List[Map[String,String]] = list.filter(_.isInstanceOf[Map[String, String]]).asInstanceOf[List[Map[String,String]]]
-//    val result = temp.foreach(if()
-    List()
+  class Diword(val str: String, val str2: String){
+    override def toString: String = "Diword(" + str + "," + str2 + ")"
   }
 
-  def onlyPeople(list: List[Any]): List[Any] = {
-    list.filter(_.isInstanceOf[Person])
+
+  def extr(list: List[Any]): List[Any] ={
+    list.map {
+      case map: Map[String, String] =>
+        if (map.contains("name")) new Person(map("name"), map("fname"), map("age"))
+        else if (map.contains("company")) new Company(map("company"), map("origin"))
+      case list: List[String] =>
+        new Diword(list.head, list.tail.head)
+    }
   }
 
-  def onlyComp(list: List[Any]): List[Any] = {
-    list.filter(_.isInstanceOf[Company])
+  def onlyPeople(list: List[Any]): List[Person] = {
+    list.filter(_.isInstanceOf[Person]).asInstanceOf[List[Person]]
+  }
+
+  def onlyComp(list: List[Any]): List[Company] = {
+    list.filter(_.isInstanceOf[Company]).asInstanceOf[List[Company]]
   }
 
 
