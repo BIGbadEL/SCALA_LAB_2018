@@ -4,9 +4,9 @@ package Lab11_gr2
 
 object zad2 extends App{
   val in = List(List(1, 2, 3, 4),
-    List(5, 0, -1, 7),
-    List(-1, 51, 1, 0),
-    List(0, 0, 7, 7))
+                List(5, 0, -1, 7),
+                List(-1, 51, 1, 0),
+                List(0, 0, 7, 7))
 
   println(in.maxBy(_.max).max)
 
@@ -15,16 +15,14 @@ object zad2 extends App{
   println(in.map(_.reduce((x1,x2) => if (x1 > x2) x1 else x2)))
 
   def indicate(list: List[List[Int]], fun: PartialFunction[Int, Boolean]): List[Boolean] = {
-
     list.map(_.collect(fun)).filter(_.nonEmpty).flatten
-
   }
 
   println( indicate( in, {case x if x < 0 => true} ) ) // List(true, true) // two negative values
 
   def synchForEach[T](list: List[List[Int]],fun: List[Int] => T): List[T] = {
 
-    return list.map(fun)
+    list.transpose.map(fun)
 
   }
 
